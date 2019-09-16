@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.1.2",
     "classnames": "^2.2.6",
     "d3-ease": "^1.0.5",
     "eslint-plugin-flowtype": "^4.3.0",

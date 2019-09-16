@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from 'components/map';
+import Drawer from 'components/map/plugins/drawer';
 
 // Layer manager
 import { LayerManager, Layer } from 'layer-manager/dist/components';
@@ -41,9 +42,6 @@ function App() {
   const onChangeOpacity = (...props) => { console.log('onChangeOpacity', props); }
   const onRemoveLayer = (...props) => { console.log('onRemoveLayer', props); }
 
-  console.log(layerGroups);
-
-
   return (
     <div className="c-app">
       <Icons />
@@ -52,19 +50,13 @@ function App() {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/layer-manager/ck07vfinn01xm1co324q5vcdl"
       >
-        {(map) =>
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-          >
-            {layers.map(layer => (
-              <Layer
-                key={layer.id}
-                {...layer}
-              />
-            ))}
-          </LayerManager>
-        }
+        {_map => (
+          <Drawer
+            map={_map}
+            drawing
+            onDrawComplete={(geojson) => { console.log(geojson); }}
+          />
+        )}
       </Map>
 
       <div className="c-legend">
